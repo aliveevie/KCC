@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dids": "node app/index.js  "
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,6 @@
     "@web5/common": "^1.0.2",
     "@web5/credentials": "^1.1.2",
     "@web5/dids": "^1.1.5"
-  }
+  },
+  "type":"module"
 }
