@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dids": "node app/index.js",
+    "server": "nodemon app/index.js",
     "kcc": "node app/kcc.js",
     "protocols": "node app/protocol.js",
     "permission": "node app/getPerm.js"

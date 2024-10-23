@@ -41,3 +41,7 @@ const {did, web5} = await Web5.connect({
     },
   },
 })
+
+export function issuerDid(){
+  return did;
+}

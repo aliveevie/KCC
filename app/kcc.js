@@ -31,4 +31,8 @@ const known_customer_credential = await VerifiableCredential.create({
     ]
   });
 
-  export default known_customer_credential;
+  console.log(known_customer_credential);
+
+  const vc_jwt_employment = await known_customer_credential.sign({ did: 'did:dht:64gtb9k9g1m31wcszrr6yc4fadyttmtmyk7bapabm8fq8jts71py' });
+
+  console.log(vc_jwt_employment);
