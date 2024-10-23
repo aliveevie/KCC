@@ -1,24 +1,5 @@
-// did:dht
-import { DidDht } from '@web5/dids';
+import { Web5 } from "@web5/api";
 
-//did:jwk
-import { DidJwk } from '@web5/dids';
-import { Web5 } from '@web5/api';
-
-
-// Creates a DID using the DHT method and publishes the DID Document to the DHT
-const didDht = await DidDht.create({ publish: true });
-// console.log(didDht);
-
-// DID and its associated data which can be exported and used in different contexts/apps
-const portableDid = await didDht.export();
-console.log(portableDid);
-
-// DID string
-// const did = didDht.uri;
-
-// DID Document
-const didDocument = JSON.stringify(didDht.document);
 
 const {did, web5} = await Web5.connect({
   didCreateOptions: {
@@ -43,5 +24,5 @@ const {did, web5} = await Web5.connect({
 })
 
 export function issuerDid(){
-  return did.uri;
+  return did;
 }

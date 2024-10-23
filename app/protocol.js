@@ -2,7 +2,6 @@ import { Web5 } from "@web5/api";
 
 const { web5, did: myDid } = await Web5.connect();
 
-console.log(did)
 
 const protocolDefinition = {
     "protocol": "https://social-media.xyz",
@@ -94,6 +93,6 @@ const { protocol, status } = await web5.dwn.protocols.configure({
 });
 
 //sends protocol to remote DWNs immediately (vs waiting for sync)
-await protocol.send('did:dht:taqpsopukzrqq48rweaonqqp6ehf4mjpdb1k9bzkucqsboz4m4ty').then(() => {
+await protocol.send('did:dht:9dd3km7f736jjgqgkffaq4m8x8t4i9n8ju7nfnp6f3ebnicbjtko').then(() => {
     console.log("Protocols install success!")
 })
