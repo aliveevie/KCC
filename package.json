@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dids": "node app/index.js",
-    "kcc": "node app/kcc.js"
+    "kcc": "node app/kcc.js",
+    "protocols": "node app/protocol.js"
   },
   "keywords": [],
   "author": "",
