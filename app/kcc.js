@@ -31,4 +31,4 @@ const known_customer_credential = await VerifiableCredential.create({
     ]
   });
 
-  console.log(known_customer_credential)
+  export default known_customer_credential;
