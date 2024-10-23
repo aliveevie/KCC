@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dids": "node app/index.js  "
+    "dids": "node app/index.js",
+    "kcc": "node app/kcc.js"
   },
   "keywords": [],
   "author": "",
