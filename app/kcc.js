@@ -1,5 +1,9 @@
 import { VerifiableCredential } from "@web5/credentials";
 
+const employer = {
+  did: 'did:dht:9dd3km7f736jjgqgkffaq4m8x8t4i9n8ju7nfnp6f3ebnicbjtko',
+  uri: ''
+}
 
 const known_customer_credential = await VerifiableCredential.create({
     issuer: 'did:dht:9dd3km7f736jjgqgkffaq4m8x8t4i9n8ju7nfnp6f3ebnicbjtko', // Issuer's DID URI
@@ -31,4 +35,5 @@ const known_customer_credential = await VerifiableCredential.create({
     ]
   });
 
-  console.log(known_customer_credential);
+
+  export { known_customer_credential };
