@@ -6,7 +6,8 @@
     "server": "node app/index.js",
     "kcc": "node app/kcc.js",
     "protocols": "node app/protocol.js",
-    "permission": "node app/getPerm.js"
+    "permission": "node app/getPerm.js",
+    "steps": "nodemon app/issuerDid.js"
   },
   "keywords": [],
   "author": "",
