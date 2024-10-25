@@ -1,4 +1,5 @@
 import { Web5 } from "@web5/api";
+import { issuerDid } from "./issuerDid";
 
 const { web5, did: myDid } = await Web5.connect();
 
@@ -84,8 +85,6 @@ const protocolDefinition = {
     }
 }
 
-
-
 const { protocol, status } = await web5.dwn.protocols.configure({
     message: {
       definition: protocolDefinition
@@ -93,6 +92,6 @@ const { protocol, status } = await web5.dwn.protocols.configure({
 });
 
 //sends protocol to remote DWNs immediately (vs waiting for sync)
-await protocol.send('did:dht:9dd3km7f736jjgqgkffaq4m8x8t4i9n8ju7nfnp6f3ebnicbjtko').then(() => {
+await protocol.send(issuerDid.uri).then(() => {
     console.log("Protocols install success!")
 })

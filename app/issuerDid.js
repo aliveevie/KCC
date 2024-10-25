@@ -49,7 +49,7 @@ try {
     // Sign the VC using the issuer DID
     const { did: bearerDid } = await web5.agent.identity.get({ didUri: did });
     const aliceJWT = await aliceKcc.sign({ did: bearerDid });
-    console.log('Issued and Signed Alice KCC:', aliceKcc);
+    console.log('Issued and Signed Alice KCC:', aliceJWT);
     console.log("Successfully done with Step 2.");
 
     // Step 3: Install Protocols on the DWN
@@ -107,7 +107,7 @@ try {
         }
     };
 
-    const { protocol, status } = await web5.dwn.protocols.configure({
+    const { protocol } = await web5.dwn.protocols.configure({
         message: { definition: protocolDefinition },
     });
 
@@ -144,9 +144,60 @@ try {
     });
 
     // Send the private record to Alice's DWN
-    await record.send(aliceDid);
-    console.log('Private record sent to Alice\'s DWN successfully!');
+   const { status } = await record.send(aliceDid);
+    console.log('Private record sent to Alice\'s DWN successfully! ', + status);
     console.log("Successfully done with Step 5.");
+
+    // Verify the Stored VC!
+    const verifyResponse = await web5.dwn.records.query({
+        from: did,  // `did` is the DID you're querying from
+        message: {
+            filter: {
+                schema: 'https://vc.schemas.host/kcc.schema.json',  // Schema used for storing the record
+                dataFormat: 'application/vc+jwt',  // Data format of the record
+            },
+        },
+    });
+    
+    // Log the entire response to see if any records are returned
+  //  console.log("Query Response:", verifyResponse);
+    
+  if (verifyResponse?.records && verifyResponse.records.length > 0) {
+    // Access the records from the response
+    const records = verifyResponse.records;
+    let aliceStoredJwt = null;
+
+    // Debugging log to check the initial value of aliceJWT
+    console.log("Original Alice JWT for Comparison:", aliceJWT);
+
+    for (const record of records) {
+        // Await the record's data text to compare it with aliceJWT
+        const recordData = await record.data.text();
+        
+        // Debug logs to check each record's data and compare it with aliceJWT
+        console.log("Retrieved Record Data for Comparison:", recordData);
+        
+        if (aliceJWT == recordData) {
+            console.log("Match Found!");
+            aliceStoredJwt = recordData;
+            break;
+        }
+    }
+
+    // Check if a matching JWT was found and log the result
+    if (aliceStoredJwt) {
+        console.log("Final Match Found! Retrieved Signed VC JWT:", aliceStoredJwt);
+        console.log("Comparison Result:", aliceJWT === aliceStoredJwt);
+    } else {
+        console.log("No matching record found for the provided JWT.");
+        console.log("Original Alice JWT (for debugging):", aliceJWT);
+    }
+} else {
+    console.log("No records found matching the query criteria.");
+}
+
+
+    
 
 } catch (error) {
     console.error("Error during execution:", error);
