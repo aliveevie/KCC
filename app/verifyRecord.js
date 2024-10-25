@@ -3,7 +3,7 @@ import path from 'path';
 
 export async function delayedVerifyJWT(web5, did, aliceJWT) {
     // Wait for at least 40 seconds before proceeding
-    await new Promise(resolve => setTimeout(resolve, 40000));
+    await new Promise(resolve => setTimeout(resolve, 10000));
 
     // Execute the query
     const verifyResponse = await web5.dwn.records.query({
