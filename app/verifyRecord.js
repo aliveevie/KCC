@@ -1,6 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
+import { fileURLToPath } from 'url';
+
+// Convert import.meta.url to __dirname equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export async function delayedVerifyJWT(web5, did, aliceJWT) {
     // Wait for at least 40 seconds before proceeding
     await new Promise(resolve => setTimeout(resolve, 10000));
