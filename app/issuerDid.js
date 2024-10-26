@@ -20,7 +20,7 @@ try {
     });
 
    // const issuerDidUri = issuerDid.uri;
-    console.log(`Issuer DID URI: ${did}`);
+   // console.log(`Issuer DID URI: ${did}`);
     console.log("Successfully done with Step 1.");
 
     // Step 2: Issue Alice a Known Customer Credential (KCC)
@@ -133,20 +133,12 @@ try {
             schema: 'https://vc.schemas.host/kcc.schema.json',  // Use the KCC schema from the Verifiable Credential
             dataFormat: 'application/vc+jwt',  // The format of the data (VC JWT)
             recipient: aliceDid,  // Alice's DID as the recipient
-            accessControl: {  // Access control to make it a private record
-                allow: [
-                    {
-                        action: 'read',  // Allow Alice to read the record
-                        who: 'did:' + aliceDid  // Alice's DID
-                    }
-                ]
-            }
         }
     });
 
     // Send the private record to Alice's DWN
    const { status } = await record.send(aliceDid);
-    console.log('Private record sent to Alice\'s DWN successfully! ', + status);
+    console.log('Private record sent to Alice\'s DWN successfully!');
     console.log("Successfully done with Step 5.");
 
     // Verify the Stored VC!
